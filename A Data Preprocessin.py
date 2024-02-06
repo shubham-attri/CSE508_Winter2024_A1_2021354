@@ -43,7 +43,7 @@ dataset_directory = 'text_files'
 preprocessed_directory = 'preprocessed_text_files'
 text_files = [file for file in os.listdir(dataset_directory) if file.endswith('.txt')]
 
-# Print contents of 5 sample files before and after preprocessing
+# Print contents of all files before and after preprocessing
 for file_name in text_files:
     file_path = os.path.join(dataset_directory, file_name)
     print(f"\nOriginal content of file: {file_name}")

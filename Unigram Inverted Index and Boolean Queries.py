@@ -67,7 +67,7 @@ def save_inverted_index(inverted_index, file_path):
         pickle.dump(inverted_index, file)
 
 # Execute queries
-def execute_queries(inverted_index, queries):
+def execute_queries(inverted_index, queries,operations):
     results = []
     for query in queries:
         operations = query.split(', ')
@@ -107,13 +107,16 @@ def preprocess_query(query):
 
 # Input format
 def input_format():
-    N = int(input())
+    N = int(input("Enter the number of queries: "))
     queries = []
+    operations =[]
     for _ in range(N):
-        query = input()
+        query = input("Enter the query: ")
+        operation = input("Enter the operations: ")
+        operations.append(operation.split(', '))
         cleaned_query = preprocess_query(query)
         queries.append(cleaned_query)
-    return N, queries
+    return N, queries, operations
 
 # Output format
 def output_format(N, queries, results):
@@ -135,10 +138,10 @@ def main():
         inverted_index = load_inverted_index(inverted_index_file)
 
     # Input
-    N, queries = input_format()
+    N, queries,operations = input_format()
 
     # Execute queries
-    results = execute_queries(inverted_index, queries)
+    results = execute_queries(inverted_index, queries,operations)
 
     # Output
     output_format(N, queries, results)

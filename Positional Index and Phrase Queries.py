@@ -100,10 +100,10 @@ def preprocess_query(query):
 
 # Input format
 def input_format():
-    N = int(input())
+    N = int(input("Enter the number of queries: "))
     queries = []
     for _ in range(N):
-        query = input()
+        query = input("Enter the query: ")
         cleaned_query = preprocess_query(query)
         queries.append(cleaned_query)
     return N, queries

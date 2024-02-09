@@ -2,12 +2,29 @@ import os
 import pickle
 from collections import defaultdict
 import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import string
 
 # Preprocessing function
 def preprocess_text(text):
+
+    # Lowercasing
     text = text.lower()
-    text = re.sub(r'[^\w\s]', '', text)  # Remove punctuations
-    tokens = text.split()
+
+    # Tokenization
+    tokens = word_tokenize(text)
+
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    tokens = [token for token in tokens if token not in stop_words]
+
+    # Remove punctuations
+    tokens = [token for token in tokens if token not in string.punctuation]
+
+    # Remove blank space tokens
+    tokens = [token for token in tokens if token.strip()]
+
     return tokens
 
 # Create unigram inverted index
@@ -68,13 +85,33 @@ def execute_queries(inverted_index, queries):
         results.append(result)
     return results
 
+def preprocess_query(query):
+    # Lowercase the text
+    query = query.lower()
+    
+    # Tokenization
+    query_tokens = nltk.word_tokenize(query)
+    
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    query_tokens = [token for token in query_tokens if token not in stop_words]
+    
+    # Remove punctuations
+    query_tokens = [re.sub(r'[^\w\s]', '', token) for token in query_tokens]
+    
+    # Remove blank space tokens
+    query_tokens = [token for token in query_tokens if token.strip()]
+    
+    return ' '.join(query_tokens)
+
 # Input format
 def input_format():
     N = int(input())
     queries = []
     for _ in range(N):
         query = input()
-        queries.append(query)
+        cleaneed_query = preprocess_query(query)
+        queries.append(cleaneed_query)
     return N, queries
 
 # Output format

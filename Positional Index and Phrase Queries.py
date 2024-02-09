@@ -1,6 +1,10 @@
 import os
 import pickle
 import re
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+import string
 
 # Preprocessing function
 def preprocess_text(text):

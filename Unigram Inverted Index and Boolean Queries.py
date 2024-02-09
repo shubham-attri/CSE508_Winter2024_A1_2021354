@@ -2,6 +2,7 @@ import os
 import pickle
 from collections import defaultdict
 import re
+import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string

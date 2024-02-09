@@ -111,8 +111,8 @@ def input_format():
     queries = []
     for _ in range(N):
         query = input()
-        cleaneed_query = preprocess_query(query)
-        queries.append(cleaneed_query)
+        cleaned_query = preprocess_query(query)
+        queries.append(cleaned_query)
     return N, queries
 
 # Output format

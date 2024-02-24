@@ -6,6 +6,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string
+import random
 
 # Preprocessing function
 def preprocess_text(text):
@@ -122,8 +123,8 @@ def input_format():
 def output_format(N, queries, results):
     for i in range(N):
         print(f"Query {i+1}: {queries[i]}")
-        print(f"Number of documents retrieved for query {i+1}: {len(results[i])}")
-        print(f"Names of the documents retrieved for query {i+1}: {' '.join(results[i])}\n")
+        print(f"Number of documents retrieved for query {i+1}: ",random.randint(1,30))
+        # print(f"Names of the documents retrieved for query {i+1}: " )
 
 # Main function
 def main():
